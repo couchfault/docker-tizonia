@@ -70,10 +70,14 @@ RUN \
             libspotify12 \
             tizonia-all=${TIZONIA_VERSION} \
     && \
-    echo "**** Install tor and proxychains ****" \
-        && apt-get install -y \
-            tor \
-            proxychains \
+    echo "**** Installing tor ****" \
+        && apt-get install -y tor git \
+    && \
+    echo "**** Installing proxychains-ng ****" \
+        && apt-get install -y software-properties-common \
+        && add-apt-repository -y ppa:hda-me/proxychains-ng \
+        && apt-get update \
+        && apt-get install -y proxychains-ng \
     && \
     echo "**** create ${UNAME} user and make our folders ****" \
         && mkdir -p \

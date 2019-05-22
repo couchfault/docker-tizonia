@@ -21,5 +21,5 @@ if [[ "$1" == "bash" || "$1" == "/bin/bash" ]]; then
 else
     # Otherwise continue to exec passed params with tizonia
     tor RunAsDaemon 1 &&
-    exec proxychains tizonia "$@";
+    exec proxychains4 tizonia "$@";
 fi
