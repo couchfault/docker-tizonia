@@ -70,12 +70,18 @@ RUN \
             libspotify12 \
             tizonia-all=${TIZONIA_VERSION} \
     && \
+    echo "**** Install tor and proxychains ****" \
+        && apt-get install -y \
+            tor \
+            proxychains \
+    && \
     echo "**** create ${UNAME} user and make our folders ****" \
         && mkdir -p \
             /home/${UNAME} \
         && groupmod -g 1000 users \
         && useradd -u 1000 -U -d /home/${UNAME} -s /bin/false ${UNAME} \
         && usermod -G users ${UNAME} \
+        && chown -R ${UNAME} /home/${UNAME} \
     && \
     echo "**** Cleanup ****" \
         && apt-get purge -y --auto-remove \

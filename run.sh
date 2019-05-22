@@ -20,5 +20,6 @@ if [[ "$1" == "bash" || "$1" == "/bin/bash" ]]; then
     exec "$@";
 else
     # Otherwise continue to exec passed params with tizonia
-    exec tizonia "$@";
+    tor RunAsDaemon 1 &&
+    exec proxychains tizonia "$@";
 fi
